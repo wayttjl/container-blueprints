@@ -57,6 +57,8 @@ spec:
     - name: build-docker-image
       taskRef:
         name: kaniko
+      runAfter:
+        - fetch-from-git
       params:
         - name: IMAGE
           value: $(params.image-name)

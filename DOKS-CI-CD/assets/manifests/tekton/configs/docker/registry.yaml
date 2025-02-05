@@ -3,4 +3,4 @@
 
 - op: replace
   path: /spec/params/3/default
-  value: <YOUR_DOCKER_REGISTRY_NAME_HERE>
+  value: 665986443982.dkr.ecr.ap-northeast-1.amazonaws.com

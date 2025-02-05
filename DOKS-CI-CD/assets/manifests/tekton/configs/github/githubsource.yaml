@@ -3,4 +3,4 @@
 
 - op: replace
   path: /spec/ownerAndRepository
-  value: <YOUR_GITHUB_USER_NAME_HERE>/tekton-sample-app
+  value: wayttjl/kubernetes-sample-apps

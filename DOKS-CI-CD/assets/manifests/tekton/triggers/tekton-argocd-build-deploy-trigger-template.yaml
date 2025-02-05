@@ -21,13 +21,13 @@ spec:
       default: tekton-ci
     - name: path-to-image-context
       description: Project build path context for docker
-      default: ./
+      default: ./game-2048-example
     - name: path-to-dockerfile
       description: Path to project Dockerfile
       default: ./Dockerfile
     - name: k8s-resources-path
       description: Path to project Kubernetes resources
-      default: resources
+      default: ./game-2048-example/manifest
     - name: k8s-dest-server
       description: Targeted Kubernetes server
       default: https://kubernetes.default.svc
@@ -44,7 +44,17 @@ spec:
         # The Pipeline reference to use and instantiate
         pipelineRef:
           name: tekton-argocd-build-deploy-pipeline
+        podTemplate:
+          env:
+            - name: AWS_SDK_LOAD_CONFIG
+              value: 'true'
+            - name: AWS_EC2_METADATA_DISABLED
+              value: 'true'
         # List of required input parameters for the Pipeline
+        # serviceAccountName: sa-for-push-image
+        taskRunSpecs:
+          - pipelineTaskName: build-docker-image
+            taskServiceAccountName: sa-for-push-image
         params:
           - name: git-url
             value: $(tt.params.git-url)
@@ -53,7 +63,7 @@ spec:
           - name: application-name
             value: $(tt.params.application-name)
           - name: image-name
-            value: registry.digitalocean.com/$(tt.params.docker-registry-name)/$(tt.params.application-name)
+            value: $(tt.params.docker-registry-name)/$(tt.params.application-name)
           - name: path-to-image-context
             value: $(tt.params.path-to-image-context)
           - name: path-to-dockerfile
