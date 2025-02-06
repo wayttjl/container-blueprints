@@ -15,19 +15,19 @@ spec:
       default: main
     - name: application-name
       description: The application name
-      default: 2048-game
+      default: java-functions-demo
     - name: docker-registry-name
       description: Docker registry name
       default: tekton-ci
     - name: path-to-image-context
       description: Project build path context for docker
-      default: ./game-2048-example
+      default: ./java-functions-demo
     - name: path-to-dockerfile
       description: Path to project Dockerfile
       default: ./Dockerfile
     - name: k8s-resources-path
       description: Path to project Kubernetes resources
-      default: ./game-2048-example/manifest
+      default: ./java-functions-demo/manifest
     - name: k8s-dest-server
       description: Targeted Kubernetes server
       default: https://kubernetes.default.svc

@@ -1,0 +1,1 @@
+kubectl -n doks-ci-cd delete pipelinerun $(kubectl -n doks-ci-cd get pipelinerun -o jsonpath='{range .items[?(@.status.conditions[*].status=="False")]}{.metadata.name}{"\n"}{end}')
